@@ -20,6 +20,20 @@
         <input type="text" class="form-control form-control-sm shadow-sm my-3" placeholder="Gender" id="gender">
         <button class="btn btn-sm btn-outline-secondary w-100 my-3" onclick="submitDetails()">Submit</button>
     </div>
+
+    <div class="col-lg-6 col-9 shadow mt-lg-5 mt-3 mx-auto p-lg-4 p-3 text-center" id="display">
+        
+    </div>
+
+    <div class="col-lg-6 col-9 shadow mt-lg-5 mt-3 mx-auto p-lg-4 p-3">
+        <h2 class="text-center">Account Portal</h2>
+        <div class="alert alert-success text-center p-2" style="display: none;" id="network">Submitted</div>
+        <input type="text" class="form-control form-control-sm shadow-sm my-3" placeholder="Account Name" id="accName">
+        <input type="text" inputmode="numeric" class="form-control form-control-sm shadow-sm my-3"
+        placeholder="Account Number" id="accNum">
+        <input type="text" class="form-control form-control-sm shadow-sm my-3" placeholder="Bank" id="bank">
+        <button class="btn btn-sm btn-secondary w-100 my-3" onclick="submitAccount()">Submit Account</button>
+    </div>
     
     <script type="module" src="script.js">
         
