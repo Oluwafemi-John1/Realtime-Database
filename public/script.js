@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
 import { getDatabase, set, ref, onValue } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
-import { getStorage, ref as stRef } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-storage.js";
+import { getStorage, ref as stRef, uploadBytesResumable } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-storage.js";
 
 
 // Your web app's Firebase configuration
@@ -69,6 +69,24 @@ const submitAccount = () => {
 
 }
 window.submitAccount = submitAccount
+
+const submitMedia = () => {
+    const file = media.files[0]
+    console.log(file);
+    const storageRef = stRef(storage, `${file.name}`)
+    const uploadTask = uploadBytesResumable(storageRef, file)
+    uploadTask.on('state_changed',(snapshot)=>{
+        console.log(snapshot);
+        let progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
+        showProgress.innerHTML = `${progress}% done`
+        if (progress==100) {
+            showProgress.style.color = 'green'
+        } else if (progress < 100) {
+            showProgress.style.color = 'blue'
+        }
+    })
+}
+window.submitMedia = submitMedia
 
 let studentRef = ref(database, 'students')
 // let accRef = ref(database, 'bankDetails')
